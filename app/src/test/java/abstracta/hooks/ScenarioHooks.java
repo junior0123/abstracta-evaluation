@@ -72,5 +72,6 @@ public class ScenarioHooks {
     @After
     public void afterScenario() {
         DriverManager.getInstance().quitWebDriver();
+        DriverManager.resetInstance(); 
     }
 }

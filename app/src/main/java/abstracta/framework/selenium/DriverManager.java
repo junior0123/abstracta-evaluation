@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Singleton class to manage Selenium WebDriver instances.
@@ -75,9 +76,14 @@ public class DriverManager {
                 if (DRIVER_CONFIG.getHeadlessMode()) {
                     chromeOptions.addArguments("--headless");
                 }
+                // En la sección de ChromeOptions:
                 String uniqueProfileDir = System.getProperty("java.io.tmpdir")
-                        + File.separator + "chrome-profile-" + java.util.UUID.randomUUID();
-                chromeOptions.addArguments("user-data-dir=" + uniqueProfileDir);
+                        + File.separator + "chrome-profile-" + UUID.randomUUID().toString().substring(0, 8); 
+                chromeOptions.addArguments(
+                        "--user-data-dir=" + uniqueProfileDir,
+                        "--no-sandbox", 
+                        "--disable-dev-shm-usage" 
+                );
 
                 driver = new ChromeDriver(service, chromeOptions);
                 LOG.info("ChromeDriver initialized");
