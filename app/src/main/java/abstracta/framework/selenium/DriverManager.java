@@ -76,9 +76,9 @@ public class DriverManager {
                 if (DRIVER_CONFIG.getHeadlessMode()) {
                     chromeOptions.addArguments("--headless");
                 }
-
-                chromeOptions.addArguments(
-                        "--no-sandbox",
+                String uniqueProfileDir = System.getProperty("java.io.tmpdir")
+                        + File.separator + "chrome-profile-" + UUID.randomUUID().toString();
+                chromeOptions.addArguments("--user-data-dir=" + uniqueProfileDir, "--no-sandbox",
                         "--disable-dev-shm-usage");
 
                 driver = new ChromeDriver(service, chromeOptions);
