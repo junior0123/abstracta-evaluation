@@ -1,6 +1,7 @@
 package abstracta.hooks;
 
 import abstracta.framework.selenium.DriverManager;
+import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
@@ -68,8 +69,8 @@ public class ScenarioHooks {
      * Executed after all scenarios have completed.
      * Quits the WebDriver instance to close the browser and release resources.
      */
-    @AfterAll
-    public static void afterAll() {
+    @After
+    public void afterScenario() {
         DriverManager.getInstance().quitWebDriver();
     }
 }
