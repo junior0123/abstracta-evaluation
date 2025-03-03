@@ -12,11 +12,9 @@ dependencies {
     testImplementation libs.junit.jupiter
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.27.0'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
-    implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version: '10.12.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation libs.guava
     testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '7.11.1'
-    testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.11.1'
     testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '7.11.1'
     implementation group: 'me.jvt.cucumber', name: 'reporting-plugin', version: '7.3.0'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.5'
