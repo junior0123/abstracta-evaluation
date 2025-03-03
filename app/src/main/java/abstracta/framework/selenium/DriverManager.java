@@ -75,10 +75,12 @@ public class DriverManager {
                 if (DRIVER_CONFIG.getHeadlessMode()) {
                     chromeOptions.addArguments("--headless");
                 }
+                chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-" + System.currentTimeMillis());
 
                 driver = new ChromeDriver(service, chromeOptions);
                 LOG.info("ChromeDriver initialized");
             }
+
             case "edge" -> {
                 LOG.info("Setting up EdgeDriver");
                 DriverService.Builder<EdgeDriverService, EdgeDriverService.Builder> builder = new EdgeDriverService.Builder()
