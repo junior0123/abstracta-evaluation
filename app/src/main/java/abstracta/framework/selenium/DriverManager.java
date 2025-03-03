@@ -80,7 +80,13 @@ public class DriverManager {
                         + File.separator + "chrome-profile-" + UUID.randomUUID().toString();
                 chromeOptions.addArguments("--user-data-dir=" + uniqueProfileDir, "--no-sandbox",
                         "--disable-dev-shm-usage");
-
+                chromeOptions.addArguments(
+                        "--headless=new", // Modo headless moderno
+                        "--disable-gpu",
+                        "--window-size=1920,1080",
+                        "--ignore-certificate-errors",
+                        "--disable-extensions",
+                        "--disable-popup-blocking");
                 driver = new ChromeDriver(service, chromeOptions);
                 LOG.info("ChromeDriver initialized");
             }
