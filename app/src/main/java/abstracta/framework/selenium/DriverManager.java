@@ -75,7 +75,9 @@ public class DriverManager {
                 if (DRIVER_CONFIG.getHeadlessMode()) {
                     chromeOptions.addArguments("--headless");
                 }
-                chromeOptions.addArguments("--user-data-dir=/tmp/chrome-profile-" + System.currentTimeMillis());
+                String uniqueProfileDir = System.getProperty("java.io.tmpdir")
+                        + File.separator + "chrome-profile-" + java.util.UUID.randomUUID().toString();
+                chromeOptions.addArguments("--user-data-dir=" + uniqueProfileDir);
 
                 driver = new ChromeDriver(service, chromeOptions);
                 LOG.info("ChromeDriver initialized");
