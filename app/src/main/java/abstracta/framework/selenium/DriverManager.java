@@ -76,8 +76,8 @@ public class DriverManager {
                     chromeOptions.addArguments("--headless");
                 }
                 String uniqueProfileDir = System.getProperty("java.io.tmpdir")
-                        + File.separator + "chrome-profile-" + java.util.UUID.randomUUID().toString();
-                chromeOptions.addArguments("--user-data-dir=" + uniqueProfileDir);
+                        + File.separator + "chrome-profile-" + java.util.UUID.randomUUID();
+                chromeOptions.addArguments("user-data-dir=" + uniqueProfileDir);
 
                 driver = new ChromeDriver(service, chromeOptions);
                 LOG.info("ChromeDriver initialized");
@@ -168,10 +168,22 @@ public class DriverManager {
     public void quitWebDriver() {
         try {
             LOG.info("Closing WebDriver");
-            driver.quit();
+            if (driver != null) {
+                driver.quit();
+                driver = null;
+            }
         } catch (Exception e) {
             LOG.error("Failed to close WebDriver: " + e.getMessage());
         }
-        driver = null;
+    }
+
+    /**
+     * Resets the DriverManager instance.
+     */
+    public static void resetInstance() {
+        if (instance != null) {
+            instance.quitWebDriver();
+            instance = null;
+        }
     }
 }
